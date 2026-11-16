@@ -29,7 +29,7 @@ This course is written for Opus-level models. Budget for it:
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) v22+ (ships with npm v10+). This repo uses **npm**, not pnpm.
+- [Node.js](https://nodejs.org/) v22.22 or later; a current LTS release is recommended. This repo uses **npm**, not pnpm.
 - [git](https://git-scm.com/)
 - A GitHub account and the [GitHub CLI](https://cli.github.com/) (`gh`), logged in: run `gh auth status` to check, or `gh auth login` to sign in
 - [jq](https://jqlang.org/download/), which some of the course scripts need
@@ -39,7 +39,7 @@ This course is written for Opus-level models. Budget for it:
 Quick check:
 
 ```bash
-node --version   # v22 or later
+node --version   # v22.22 or later
 git --version
 gh auth status
 jq --version
@@ -53,6 +53,7 @@ git clone https://github.com/ai-hero-dev/cohort-005-project.git
 cd cohort-005-project
 
 # 2. Fork it into your own GitHub repo
+# Make sure node --version is v22.22 or later in this terminal first.
 npx ai-hero-cli fork
 
 # 3. Install dependencies
@@ -138,6 +139,22 @@ npm run db:seed     # if the seed data changed
 Your `.env` is gitignored, so it survives a reset.
 
 ## Troubleshooting
+
+### `ReferenceError: File is not defined` when running `ai-hero-cli`
+
+The CLI is running on an older Node.js version. Switch to Node.js 22 or later in
+the same terminal before running `npx ai-hero-cli fork`. For example, with
+[nvm](https://github.com/nvm-sh/nvm):
+
+```bash
+nvm install 22
+nvm use 22
+node --version   # v22.22 or later
+```
+
+If you already have Node 22 installed, `nvm use 22` is enough. Then retry the
+fork command. The CLI is an external package, so installing this repo's
+dependencies does not fix a Node version mismatch.
 
 ### "Could not locate the bindings file"
 
