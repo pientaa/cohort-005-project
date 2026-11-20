@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "knock-spike",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": ["-c", "PATH=$HOME/.nvm/versions/node/v22.23.3/bin:$PATH npm run dev -- --port 5199 --strictPort"],
+      "port": 5199
+    }
+  ]
+}
