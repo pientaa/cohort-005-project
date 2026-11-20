@@ -38,6 +38,18 @@ if (!feed) {
 }
 console.log("feed channel key:", feed.key);
 
+// Workflow categories must exist in the preference category catalog first (MAPI 422 otherwise).
+for (const [key, description] of [
+  ["discussions", "Discussion questions and replies"],
+  ["enrollments", "New Enrollments in an Instructor's course"],
+]) {
+  await mapi(
+    "PUT",
+    `/preference_categories/${key}?environment=${ENV}&commit=true&commit_message=${encodeURIComponent("prototype: knock spike")}`,
+    { preference_category: { name: key, description } }
+  );
+}
+
 const workflows = [
   {
     key: "discussion-reply",
